@@ -1,6 +1,26 @@
 <?php
 session_start();
-include 'config.php'
+include 'config.php';
+
+// ตรวจสอบการเชื่อมต่อฐานข้อมูล
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// รับคำค้นหาจากฟอร์ม
+$searchQuery = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+
+// สร้างคำสั่ง SQL สำหรับค้นหา
+$sql = "SELECT * FROM products";
+if ($searchQuery) {
+    $sql .= " WHERE product_name LIKE '%$searchQuery%'";
+}
+
+$hand = mysqli_query($conn, $sql);
+
+if (!$hand) {
+    die("Query failed: " . mysqli_error($conn));
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,71 +36,126 @@ include 'config.php'
     <link href="<?php echo $base_url; ?>/assets/fontawesome/css/fontbrands.min.css" rel="stylesheet">
     <link href="<?php echo $base_url; ?>/assets/fontawesome/css/solid.min.css" rel="stylesheet">
 
+    <style>
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .search-form {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .daily-products {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .daily-products h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .daily-product-card {
+            width: calc(100% / 5 - 20px);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .daily-product-card:hover {
+            transform: scale(1.05);
+        }
+        .daily-product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .daily-product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .daily-product-title {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .daily-product-price {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="ptt">
-        <div class="div">
-            <div class="overlap">
-                <div class="rectangle"></div>
-                <div class="text-wrapper">รถยนต์</div>
-                <div class="text-wrapper-2">มอเตอร์ไซต์</div>
-                <div class="text-wrapper-3">เสื้อผ้า</div>
-                <div class="text-wrapper-4">มือถือ / แท็บเล็ต</div>
-                <div class="text-wrapper-5">เครื่องใช้ไฟฟ้า</div>
-                <div class="text-wrapper-6">เครื่องดนตรี</div>
-                <div class="text-wrapper-7">ความงาม</div>
-                <div class="text-wrapper-8">นาฬิกา</div>
-                <img class="img" src="img/รถเก๋ง.png" alt="รถเก๋ง">
-                <img class="element" src="img/cpx.png" alt="cpx">
-                <img class="element-2" src="img/นากา.png" alt="นากา">
-                <img class="element-3" src="img/กีต้า.png" alt="กีต้า">
-                <img class="element-4" src="img/ไมโคร.png" alt="ไมโคร">
-                <a href="/2.2/index.html" class="image-link">
-                    <img class="element-5" src="img/ไอโฟน.png" alt="ไอโฟน">
-                </a>
-                <img class="element-6" src="img/เดรส.png" alt="เดรส">
-                <img class="img-2" src="img/4e5f9e4840b5343c390cc9de19c50e01-1.png" alt="Image">
+    <?php include 'include/menu.php'; ?>
+    <div class="container mt-4">
+        <div class="daily-products">
+            <h2>สินค้าประจำวัน</h2>
+            <div class="product-list">
+                <?php while ($row = mysqli_fetch_array($hand)) {
+                    $imageSrc = "/shoppingcart/upload_image/" . htmlspecialchars($row['profile_image']);
+                    $productId = htmlspecialchars($row['id']);
+                    $productName = htmlspecialchars($row['product_name']);
+                    $productPrice = htmlspecialchars($row['price']);
+                    $productUrl = "product-details.php?id=" . $productId;
+                ?>
+                    <a href="<?php echo $productUrl; ?>" class="daily-product-card">
+                        <img src="<?php echo $imageSrc; ?>" class="product-image" alt="profile_image">
+                        <div class="daily-product-info">
+                            <div class="daily-product-title"><?php echo $productName; ?></div>
+                            <div class="daily-product-price">ราคา <?php echo $productPrice; ?> บาท</div>
+                        </div>
+                    </a>
+                <?php } ?>
             </div>
-            <div class="overlap-group">
-                <div class="overlap-group-2">
-                    <img class="user-fill" src="img/user-fill.svg" alt="User Fill">
-                    <div class="text-wrapper-9">คุณลำใย</div>
-                </div>
-            </div>
-            <img class="menu" src="img/menu.svg" alt="Menu">
-            <img class="image" src="img/รถเข็น.png" alt="รถเข็น">
-            <img class="image-2" src="img/image-2.png" alt="Image 2">
-
-            <div class="overlap-2">
-                <input class="Search-bar" id="search-bar" type="text" placeholder="Search">
-                <button class="Search-butt" id="search-button">Search</button>
-            </div>
-            <div id="search-results"></div>
-
-
-            <img class="image-3" src="img/image-4.png" alt="Image 4">
-            <div class="div-wrapper">
-                <div class="text-wrapper-11">ลงขาย</div>
-            </div>
-            <div class="overlap-3">
-                <img class="default-a-stylized" src="img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
-                <div class="rectangle-3"></div>
-            </div>
-            <div class="text-wrapper-12">2 Hand Market Online</div>
         </div>
-        <div class="overlap-4">
-            <img class="rectangle-4" src="img/rectangle-58.png" alt="Rectangle 58">
-            <div class="ellipse"></div>
-            <div class="ellipse-2"></div>
-            <img class="expand-left-light" src="img/expand-left-light.svg" alt="Expand Left Light">
-            <img class="expand-right-light" src="img/expand-right-light.svg" alt="Expand Right Light">
-        </div>
-        <div class="text-wrapper-13">กิจกรรมล่าสุด</div>
-        <div class="text-wrapper-14">ดูทั้งหมด</div>
-        <img class="expand-down-light" src="img/expand-down-light.svg" alt="Expand Down Light">
     </div>
-    
-    <script src="<?php echo $base_url; ?>/assets/js/bootstrap.min.js"></script>
 </body>
 </html>
 
+<?php mysqli_close($conn); ?>

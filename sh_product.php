@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Product</title>
     <link href="/shoppingcart/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/sh_product.css">
     <style>
         .product-card {
             display: flex;
@@ -46,7 +47,15 @@
     </style>
 </head>
 <body>
-    <?php include 'include/menu.php'; ?>
+        <div class="custom-header">
+                <a href="/shoppingcart/index.php" class="custom-logo">
+                    <img src="/shoppingcart/img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
+                </a>
+                <div class="custom-user-info">
+                    <img src="/shoppingcart/img/user-fill.svg" alt="User Fill">
+                    <div>คุณลำใย</div>
+        </div>
+    </div>
     <div class="container mt-4">
 
         <div class="d-flex flex-wrap">

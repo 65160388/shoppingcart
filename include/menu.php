@@ -57,12 +57,14 @@
             <div class="div-wrapper">
                 <div class="text-wrapper-11">ลงขาย</div>
             </div>
+
             <div class="overlap-3">
-                <img class="default-a-stylized" src="img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
-                <div class="rectangle-3"></div>
-            </div>
-            <div class="text-wrapper-12">2 Hand Market Online</div>
+                <a href="/shoppingcart/index.php">
+                    <img class="default-a-stylized" src="img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
+                </a>
+            <div class="rectangle-3"></div>
         </div>
+    </div>
 
         <div class="overlap-4">
             <img id="image" class="rectangle-4" src="img/rectangle-58.png" alt="Current Image">

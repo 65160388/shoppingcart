@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+}
+
+.custom-logo img {
+    height: 80px; /* ปรับขนาดโลโก้ให้ใหญ่ขึ้น */
+    width: 80px;
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    background-color: white; /* พื้นหลังสีขาว */
+    padding: 10px; /* เพิ่ม padding เพื่อให้มีพื้นที่รอบๆ โลโก้ */
+}
+
+.custom-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.custom-user-info img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.custom-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+}
+
+.custom-product-image {
+    flex: 1;
+    max-width: 600px; /* ปรับขนาดรูปสินค้าให้ใหญ่ขึ้น */
+}
+
+.custom-product-image img {
+    width: 100%;
+    max-height: 600px; /* ปรับขนาดรูปสินค้าให้ใหญ่ขึ้น */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.custom-product-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-product-title {
+    font-size: 2em;
+    color: #333;
+}
+
+.custom-product-price {
+    color: #ff5722;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin: 20px 0;
+}
+
+.custom-product-detail {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.custom-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.custom-buttons button {
+    flex: 1;
+    padding: 15px 0; /* เพิ่มขนาด padding เพื่อให้ปุ่มใหญ่ขึ้น */
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* ให้ปุ่มขยายเต็มที่ของพาเรนท์ */
+}
+
+.custom-buttons .custom-buy-btn {
+    background-color: #ff5722;
+    color: white;
+    font-size: 1.2em; /* เพิ่มขนาด font */
+}
+
+.custom-buttons .custom-cart-btn {
+    background-color: #ffc107;
+    color: black;
+    font-size: 1.2em; /* เพิ่มขนาด font */
+}
+
+.custom-details-box {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-details-box h2 {
+    margin-top: 0;
+}
