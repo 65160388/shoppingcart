@@ -29,144 +29,34 @@ if ($productId > 0) {
 
 mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายละเอียดสินค้า</title>
+    <link rel="stylesheet" href="assets/css/product-details.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        .custom-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: #96642a80;
-            color: white;
-        }
-
-        .custom-logo img {
-            height: 80px; /* ปรับขนาดโลโก้ให้ใหญ่ขึ้น */
-            width: 80px;
-            border-radius: 50%; /* ทำให้เป็นวงกลม */
-            background-color: white; /* พื้นหลังสีขาว */
-            padding: 10px; /* เพิ่ม padding เพื่อให้มีพื้นที่รอบๆ โลโก้ */
-        }
-
-        .custom-user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .custom-user-info img {
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .custom-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 20px;
-        }
-
-        .custom-product-image {
-            flex: 1;
-            max-width: 600px; /* ปรับขนาดรูปสินค้าให้ใหญ่ขึ้น */
-        }
-
-        .custom-product-image img {
-            width: 100%;
-            max-height: 600px; /* ปรับขนาดรูปสินค้าให้ใหญ่ขึ้น */
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .custom-product-details {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .custom-product-title {
-            font-size: 2em;
-            color: #333;
-        }
-
-        .custom-product-price {
-            color: #ff5722;
-            font-weight: bold;
-            font-size: 1.8em;
-            margin: 20px 0;
-        }
-
-        .custom-product-detail {
+        .custom-product-stock {
             font-size: 1.2em;
-            line-height: 1.6;
-            color: #555;
+            color: <?php echo ($product['stock_quantity'] > 0) ? '#28a745' : '#dc3545'; ?>;
+            margin-bottom: 10px;
+        }
+
+        .quantity-wrapper {
             margin-bottom: 20px;
         }
 
-        .custom-buttons {
-            display: flex;
-            gap: 20px;
-            align-items: center;
+        .quantity-wrapper label {
+            font-weight: bold;
         }
 
-        .custom-buttons form {
-            flex: 1;
-            display: flex;
-            gap: 10px;
-        }
-
-        .custom-buttons button {
-            flex: 1;
-            padding: 15px 0; /* เพิ่มขนาด padding เพื่อให้ปุ่มใหญ่ขึ้น */
-            font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center; /* เพิ่มการจัดกึ่งกลางข้อความ */
-        }
-
-        .custom-buttons .custom-buy-btn {
-            background-color: #96642a;
-            color: white;
-        }
-
-        .custom-buttons .custom-cart-btn {
-            background-color: #ffc107;
-            color: black;
-        }
-
-        .custom-buttons button:hover {
-            opacity: 0.9;
-        }
-
-        .custom-details-box {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .custom-details-box h2 {
-            margin-top: 0;
+        .quantity-wrapper input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -175,9 +65,11 @@ mysqli_close($conn);
         <a href="/shoppingcart/index.php" class="custom-logo">
             <img src="img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
         </a>
-        <div class="custom-user-info">
-            <img src="img/user-fill.svg" alt="User Fill">
-            <div>คุณลำใย</div>
+        <div class="custom-search">
+            <form method="GET" action="index.php">
+                <input type="text" name="search" placeholder="ค้นหาสินค้า...">
+                <button type="submit">ค้นหา</button>
+            </form>
         </div>
     </div>
     <div class="custom-container">
@@ -187,12 +79,26 @@ mysqli_close($conn);
         <div class="custom-product-details">
             <h1 class="custom-product-title"><?php echo htmlspecialchars($product['product_name']); ?></h1>
             <p class="custom-product-price">ราคา <?php echo htmlspecialchars($product['price']); ?> บาท</p>
+            <?php if ($product['stock_quantity'] > 0): ?> <!--จะถูกซ่อนเมื่อสินค้าหมด -->
+                <div class="quantity-wrapper">
+                    <label for="quantity">จำนวน:</label>
+                    <button type="button" id="decrease-quantity">-</button>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $product['stock_quantity']; ?>">
+                    <button type="button" id="increase-quantity">+</button>
+                </div>
+            <?php endif; ?>
+            <p class="custom-product-stock"><?php echo ($product['stock_quantity'] > 0) ? "จำนวนสินค้าคงเหลือ: " . htmlspecialchars($product['stock_quantity']) . " ชิ้น" : "สินค้าหมด"; ?></p>
+            
             <div class="custom-buttons">
-                <form action="payment.php" method="get">
-                    <input type="hidden" name="id" value="<?php echo $productId; ?>">
-                    <button type="submit" class="custom-buy-btn">ซื้อ</button>
+                <form action="checkout.php" method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                    <?php if ($product['stock_quantity'] > 0): ?>
+                        <input type="hidden" name="quantity" id="form-quantity" value="1"> <!-- ใช้ JavaScript ปรับค่านี้ -->
+                    <?php endif; ?>
+                    <button type="submit" class="custom-buy-btn" <?php echo ($product['stock_quantity'] == 0) ? 'disabled' : ''; ?>>ซื้อ</button>
                 </form>
-                <button class="custom-cart-btn">เพิ่มลงตะกร้า</button>
+                <button class="custom-cart-btn" <?php echo ($product['stock_quantity'] == 0) ? 'disabled' : ''; ?>>เพิ่มลงตะกร้า</button>
             </div>
         </div>
     </div>
@@ -200,5 +106,27 @@ mysqli_close($conn);
         <h2>รายละเอียดสินค้า</h2>
         <p><?php echo nl2br(htmlspecialchars($product['detail'])); ?></p>
     </div>
+
+    <?php if ($product['stock_quantity'] > 0): ?> <!-- เมื่อมีสินค้าคงเหลือ -->
+        <script>
+            document.getElementById('quantity').addEventListener('input', function() {
+                document.getElementById('form-quantity').value = this.value;
+            });
+
+            document.getElementById('decrease-quantity').addEventListener('click', function() {
+                var quantity = document.getElementById('quantity');
+                if (quantity.value > 1) {
+                    quantity.value--;
+                }
+            });
+
+            document.getElementById('increase-quantity').addEventListener('click', function() {
+                var quantity = document.getElementById('quantity');
+                if (quantity.value < <?php echo $product['stock_quantity']; ?>) {
+                    quantity.value++;
+                }
+            });
+        </script>
+    <?php endif; ?>
 </body>
 </html>

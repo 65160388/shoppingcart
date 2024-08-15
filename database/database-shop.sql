@@ -24,6 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sellers`
+--
+
+CREATE TABLE `sellers` (
+  `seller_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ขาย',
+  `first_name` varchar(50) NOT NULL COMMENT 'ชื่อจริง',
+  `last_name` varchar(50) NOT NULL COMMENT 'นามสกุล',
+  `email` varchar(100) NOT NULL COMMENT 'อีเมล',
+  `phone` varchar(30) DEFAULT NULL COMMENT 'เบอร์โทรศัพท์',
+  `registration_date` date NOT NULL COMMENT 'วันที่ลงทะเบียน',
+  `is_active` tinyint(1) NOT NULL COMMENT 'สถานะการใช้งาน',
+  PRIMARY KEY (`seller_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 

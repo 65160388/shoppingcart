@@ -1,83 +1,107 @@
 <?php
-include 'config.php'; // ตรวจสอบให้แน่ใจว่าเส้นทางถูกต้อง
+session_start();
+include 'config.php';
 
 // ตรวจสอบการเชื่อมต่อฐานข้อมูล
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// รับ ID จาก URL
-$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// รับข้อมูล order_id จาก URL หรือฟอร์ม
+$orderId = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
 
-if ($productId > 0) {
-    // ดึงข้อมูลสินค้าจากฐานข้อมูล
-    $sql = "SELECT * FROM products WHERE id = $productId";
+if ($orderId > 0) {
+    // ดึงข้อมูลคำสั่งซื้อและรายการสินค้า
+    $sql = "SELECT orders.*, order_items.*, products.product_name, products.profile_image, products.price, products.id as product_id 
+            FROM orders 
+            JOIN order_items ON orders.order_id = order_items.order_id 
+            JOIN products ON order_items.product_id = products.id 
+            WHERE orders.order_id = $orderId";
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
         die("Query failed: " . mysqli_error($conn));
     }
 
-    $product = mysqli_fetch_assoc($result);
-
-    if (!$product) {
-        die("Product not found.");
+    // ตรวจสอบว่ามีคำสั่งซื้อหรือไม่
+    if (mysqli_num_rows($result) > 0) {
+        $orderItems = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        die("Order not found.");
     }
 } else {
-    die("Invalid product ID.");
+    die("Invalid order ID.");
 }
 
 mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ชำระเงิน</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/payment.css">
-    
+    <title>สรุปคำสั่งซื้อ</title>
+    <link rel="stylesheet" href="assets/css/Payment.css">
 </head>
 <body>
-    <div class="container">
-      <div class="header">
-        <div class="text-wrapper">2 Hand Market Online</div>
-        <div class="text-wrapper-2">วิธีการชำระเงิน</div>
-      </div>
-      <div class="payment-methods">
-        <div class="payment-method">QR พร้อมเพย์</div>
-        <div class="payment-method">เก็บเงินปลายทาง</div>
-        <div class="payment-method">บัตรเครดิต/บัตรเดบิต</div>
-        <div class="payment-method">Mobile Banking</div>
-      </div>
-      <form action="process_payment.php" method="post">
-        <div class="form-group">
-          <label for="card-number">CARD NUMBER</label>
-          <input type="text" id="card-number" name="card-number" value="4654-2260-5463-6189" />
+    <!-- หัวเว็บเพจ -->
+    <div class="custom-header">
+        <a href="/shoppingcart/index.php">
+            <div class="logo-container">
+                <img class="default-a-stylized" src="img/default-a-stylized-logo-featuring-two-human-hands-with-palms-f-1-1.png" alt="Logo">
+            </div>
+        </a>
+        <div class="header-title">
+            <span>ทำการสั่งซื้อ</span>
         </div>
-        <div class="form-group">
-          <label for="expiry-date">EXPIRY DATE</label>
-          <input type="text" id="expiry-date" name="expiry-date" value="08/28" />
-        </div>
-        <div class="form-group">
-          <label for="cvv">CVV</label>
-          <input type="text" id="cvv" name="cvv" value="555" />
-        </div>
-        <div class="form-group">
-          <label for="cardholder-name">CARDHOLDER NAME</label>
-          <input type="text" id="cardholder-name" name="cardholder-name" value="คุณลำไย" />
-        </div>
-        <div class="form-group">
-          <label for="email">EMAIL ADDRESS</label>
-          <input type="email" id="email" name="email" value="khunlamyai123@gmail.com" />
-        </div>
-        <input type="hidden" id="id" name="id" value="<?php echo $productId; ?>" />
-        <div class="actions">
-          <a href="index.php" class="btn cancel">ยกเลิก</a>
-          <a href="payment_success.php" class="btn confirm">ดำเนินการชำระเงิน</a>
-        </div>
-      </form>
     </div>
-  </body>
+
+    <div class="container mt-5">
+        <!-- <h2 class="text-center mb-4">สรุปคำสั่งซื้อ</h2> -->
+        <div class="card">
+            <div class="card-header">
+                ข้อมูลสินค้า
+            </div>
+            <div class="card-body">
+                <?php foreach ($orderItems as $item): ?>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <img src="upload_image/<?php echo htmlspecialchars($item['profile_image']); ?>" class="img-fluid" alt="Product Image">
+                        </div>
+                        <div class="col-md-8">
+                            <h4><?php echo htmlspecialchars($item['product_name']); ?></h4>
+                            <p class="text-muted">ราคา: <?php echo htmlspecialchars($item['price']); ?> บาท</p>
+                            <p class="text-muted">จำนวน: <?php echo htmlspecialchars($item['quantity']); ?> ชิ้น</p>
+                            <p class="font-weight-bold">ราคารวม: <?php echo htmlspecialchars($item['price'] * $item['quantity']); ?> บาท</p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class="payment-container">
+            <form action="process_payment.php" method="post" class="d-inline">
+                <input type="hidden" name="order_id" value="<?php echo $orderId; ?>">
+                <div class="form-group">
+                    <label for="payment_method">วิธีการชำระเงิน</label>
+                    <select class="form-control" id="payment_method" name="payment_method">
+                        <option value="credit_card">บัตรเครดิต</option>
+                        <option value="bank_transfer">โอนผ่านธนาคาร</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-success">ไปหน้าชำระเงิน</button>
+                    <a href="product-details.php?id=<?php echo htmlspecialchars($orderItems[0]['product_id']); ?>" class="btn btn-danger btn-lg">ยกเลิก</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

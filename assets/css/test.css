@@ -1,0 +1,174 @@
+    /* พื้นหลัง */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 0;
+    }
+  
+    /* คอนเทนเนอร์หลัก */
+    .container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px 15px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+  
+  /* ส่วนหัว */
+  h2 {
+      text-align: center;
+      padding-bottom: 20px;
+      font: 2em sans-serif;
+      font-weight: normal; /* เปลี่ยนจาก bold เป็น normal */
+      color: #333; /* ปรับสีให้เข้มขึ้นเล็กน้อยแทนที่จะเป็นสีดำ */
+      margin-bottom: 0; /* ลบ margin ล่างที่อาจสร้างช่องว่างที่ไม่จำเป็น */
+      border-bottom: none; /* ลบเส้นใต้ถ้ามี */
+  }
+  
+  
+    /* สไตล์ของการ์ด */
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 30px;
+        background-color: #fff;
+    }
+  
+    /* ส่วนหัวของการ์ด */
+    .card-header {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 15px 20px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+  
+    /* ส่วนของเนื้อหาภายในการ์ด */
+    .card-body {
+        padding: 25px;
+    }
+  
+    /* รูปภาพภายในการ์ด */
+    .card img {
+        border-radius: 10px;
+        width: auto;
+        max-height: 250px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto 20px;
+    }
+  
+    /* สไตล์ของตัวหนังสือที่เน้น */
+    .text-muted {
+        color: #6c757d;
+        margin-bottom: 10px;
+    }
+  
+    /* สไตล์ตัวหนังสือที่เน้นสำคัญ */
+    .font-weight-bold {
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: #007bff;
+    }
+  
+    /* ปุ่มสั่งซื้อ */
+    .btn-success, .btn-danger {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        margin: 10px 5px;
+        text-align: center;
+        min-width: 140px;
+    }
+  
+    /* ปุ่มยกเลิก */
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        text-decoration: none;
+    }
+  
+    /* ปุ่มยืนยัน */
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+        text-decoration: none;
+    }
+  
+    /* เปลี่ยนสีปุ่มเมื่อ hover */
+    .btn-danger:hover {
+        background-color: #c82333;
+        text-decoration: none;
+    }
+  
+    .btn-success:hover {
+        background-color: #218838;
+        text-decoration: none;
+    }
+  
+    /* จัดวางปุ่มให้อยู่ตรงกลาง */
+    .text-center {
+        text-align: center !important;
+    }
+  
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+  
+    /* ฟอร์ม */
+    .form-group {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+  
+    .form-control {
+        display: inline-block;
+        width: 60%;
+        max-width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        /* font-weight: bold; */
+        transition: all 0.3s ease;
+    }
+  
+    .form-control:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 10px rgba(0, 91, 187, 0.2);
+    }
+  
+    .payment-container {
+        border-top: 1px solid #e0e0e0;
+        padding-top: 20px;
+        margin-top: 20px;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+    }
+  
+    /* Media Query สำหรับหน้าจอขนาดเล็ก */
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 15px;
+        }
+        .btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }

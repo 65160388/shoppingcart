@@ -25,18 +25,26 @@ include 'config.php';  // เพิ่ม ; หลัง include
                                 <label class="form-label">Product ID</label>
                                 <input type="text" id="product_id" name="product_id" class="form-control" value="">
                             </div>
+
                             <div class="form-group mt-3">
                                 <label class="form-label">Product Name</label>
                                 <input type="text" id="product_name" name="product_name" class="form-control" value="">
                             </div>
+
                             <div class="form-group mt-3">
                                 <label class="form-label">Product Price</label>
                                 <input type="number" id="price" name="price" class="form-control" step="0.01" value="">
                             </div>
                             <div class="form-group mt-3">
-                                <Product for="formFile" class="form-label">Product Image</label>
+                                <label class="form-label">Stock Quantity</label>
+                                <input type="number" id="stock_quantity" name="stock_quantity" class="form-control" value="" min="0">
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="formFile" class="form-label">Product Image</label>
                                 <input type="file"  name="profile_image" class="form-control" accept="image/png, image/jpg, image/jpeg" required>
                             </div>
+
                             <div class="form-group mt-3">
                                 <label class="form-label">Product Description</label>
                                 <textarea  name="detail" class="form-control" rows="4"></textarea>

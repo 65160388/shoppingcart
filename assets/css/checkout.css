@@ -1,0 +1,144 @@
+/* checkout.css */
+
+/* พื้นหลัง */
+body {
+    background-color: #eef2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* หัวเว็บเพจ */
+.custom-header {
+    background-color: #d4b196;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.logo-container img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.header-title span {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* สไตล์ของการ์ด */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* ส่วนหัวของการ์ด */
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+}
+
+/* ส่วนของเนื้อหาภายในการ์ด */
+.card-body {
+    padding: 25px;
+}
+
+/* รูปภาพภายในการ์ด */
+.card img {
+    border-radius: 10px;
+    width: 100%; /* ปรับขนาดของรูปภาพให้เป็น 100% ของคอลัมน์ */
+    max-height: 400px; /* เพิ่มความสูงสูงสุด */
+    object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่ */
+    margin-bottom: 20px;
+}
+
+/* สไตล์ของตัวหนังสือที่เน้น */
+.text-muted {
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+/* สไตล์ตัวหนังสือที่เน้นสำคัญ */
+.font-weight-bold {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #007bff;
+}
+
+/* ปุ่มสั่งซื้อ */
+.btn-success, .btn-danger {
+    background-color: #28a745;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+}
+
+/* ปุ่มยกเลิก */
+.btn-danger {
+    background-color: #dc3545;
+}
+
+/* เปลี่ยนสีปุ่มเมื่อ hover */
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* จัดวางปุ่มให้อยู่ตรงกลาง */
+.text-center {
+    text-align: center !important;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ปรับขนาดของ container */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px 15px;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 15px;
+    }
+    .btn-success {
+        width: 100%;
+        margin-top: 20px;
+    }
+}

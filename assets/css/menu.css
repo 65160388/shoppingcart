@@ -1,0 +1,198 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-custom {
+    background-color: #ff5722;
+    padding: 10px 20px;
+}
+
+.navbar-custom .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+}
+
+.navbar-custom .nav-link:hover {
+    color: #f1f1f1;
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.logo-container img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.banner {
+    background-color: #fff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.banner p {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.search-bar-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-container input {
+    border-radius: 50px 0 0 50px;
+    padding: 10px 20px;
+    width: 500px;
+    border: 1px solid #ddd;
+    border-right: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.search-bar-container button {
+    border-radius: 0 50px 50px 0;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff5722;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    width: 100px;
+}
+
+.search-bar-container button:hover {
+    background-color: #e64a19;
+}
+
+.category-section {
+    border-radius: 10px;
+    padding: 30px 0;
+    background-color: #fff;
+}
+
+.category-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    background-color: #F5F7F8;
+}
+
+.category-item {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.category-item:hover {
+    background-color: #f1f1f1;
+}
+
+.category-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.category-item p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #ff5722;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* เปลี่ยนสีราคาตรงนี้ */
+/* เอาเส้นใต้ลิงก์ออก */ 
+a {
+    text-decoration: none;
+    color: #ff5722; /* ให้ใช้สีของข้อความตามปกติ */
+}
+
+a:hover {
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
+    color: inherit; /* รักษาสีเดิม */
+}
+
+/* Adjust dropdown menu size */
+.dropdown-menu {
+    min-width: 120px; /* ลดขนาดความกว้างของเมนู */
+    padding: 5px; /* ปรับ padding เพื่อความสวยงาม */
+    font-size: 14px; /* ปรับขนาดตัวอักษร */
+}
+
+.dropdown-item {
+    padding: 5px 10px; /* ปรับ padding ของแต่ละ item */
+}
+
+.navbar-nav .dropdown-menu {
+    right: 0; /* บังคับให้ดรอปดาวน์ชิดขอบขวาของปุ่ม */
+    left: auto; /* ปิดการตั้งค่าขอบซ้ายอัตโนมัติ */
+    transform: translateX(-5%); /* ปรับขนาดตามความต้องการ */
+}

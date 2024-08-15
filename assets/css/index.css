@@ -1,0 +1,138 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none; /* ไม่จำเป็นถ้าไม่มีเส้นใต้เริ่มต้น */
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+/* menu.css ที่ทำให้เส้นลิ้งค์ออกได้ */
+.daily-product-card a {
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+    color: inherit; /* ให้ใช้สีของข้อความตามปกติ */
+}
+
+.daily-product-card a:hover {
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
+    color: inherit; /* รักษาสีเดิม */
+}
+
+.daily-product-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #000; /* เปลี่ยนสีเป็นสีดำ */
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+}
+
+.daily-product-title:hover {
+    text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
+    color: #000; /* รักษาสีดำเดิม */
+}
+/* menu.css ที่ทำให้เส้นลิ้งค์ออกได้ */
+.product-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #000; /* เปลี่ยนสีเป็นสีดำ */
+}
+
+.product-price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.search-form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.daily-products {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.daily-products h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.daily-product-card {
+    width: calc(100% / 5 - 20px); /* สามารถเพิ่มการแสดงสินค้ากี่คอลัมน์ก็ได้ */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.daily-product-card:hover {
+    transform: scale(1.05);
+}
+
+.daily-product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.daily-product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+/* .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #ff5722;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+} */
