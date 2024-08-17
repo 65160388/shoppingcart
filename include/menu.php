@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : null;
+$isSeller = isset($_SESSION['is_seller']) ? $_SESSION['is_seller'] : false; // ตรวจสอบสถานะผู้ขาย
 ?>
 
 <!DOCTYPE html>
@@ -50,9 +51,17 @@ $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : null;
                 <li class="nav-item">
                     <a class="nav-link" href="#">บริการ</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="add_product.php">ลงขาย</a>
-                </li>
+                <?php if ($isSeller): ?> 
+                    <!-- แสดงปุ่มลงขายสำหรับผู้ขายเท่านั้น -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_product.php">ลงขาย</a>
+                    </li>
+                <?php else: ?>
+                    <!-- หากผู้ใช้ยังไม่ได้สมัครเป็นผู้ขาย แสดงปุ่มนี้ -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="upgrade_to_seller.php">สมัครเป็นผู้ขาย</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link" href="#">โปรโมชั่น</a>
                 </li>
@@ -142,9 +151,8 @@ $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : null;
         </div>
     </section>
 
-    <!-- Bootstrap JS -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
-    <!-- Bootstrap JS -->
+    
+      <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

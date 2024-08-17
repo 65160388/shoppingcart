@@ -1,5 +1,3 @@
-/* Payment.css */
-
 /* พื้นหลัง */
 body {
   background-color: #eef2f5;
@@ -89,16 +87,17 @@ body {
 
 /* ปุ่มสั่งซื้อ */
 .btn-success, .btn-danger {
-  padding: 12px 25px;
-  font-size: 1.1rem;
-  border-radius: 8px;
+  padding: 10px 20px; /* ลดขนาดปุ่ม */
+  font-size: 1rem; /* ลดขนาดตัวอักษร */
+  border-radius: 5px; /* ปรับขนาดมุมโค้ง */
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin: 0 10px;
-  min-width: 150px;
+  min-width: 120px; /* ลดความกว้างขั้นต่ำ */
   color: #fff;
   display: inline-block;
   text-align: center;
   text-decoration: none; /* ลบเส้นใต้ของลิงก์ */
+  flex: 1; /* ทำให้ปุ่มมีขนาดเท่ากัน */
 }
 
 /* ปุ่มยกเลิก */
@@ -154,6 +153,14 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-left: 10px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
 /* ปรับขนาดของ container */
@@ -161,14 +168,4 @@ body {
   max-width: 800px;
   margin: auto;
   padding: 30px 15px;
-}
-
-@media (max-width: 768px) {
-  .card-body {
-    padding: 15px;
-  }
-  .btn-success, .btn-danger {
-    width: 100%;
-    margin-top: 20px;
-  }
 }

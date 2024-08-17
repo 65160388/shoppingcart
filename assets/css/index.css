@@ -76,8 +76,8 @@
 .daily-products h2 {
     margin-bottom: 20px;
     text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
+    position: -webkit-sticky; /* ตามติด */
+    position: sticky; /* ตามติด */
     top: 0;
     background-color: #fff;
     z-index: 1000;

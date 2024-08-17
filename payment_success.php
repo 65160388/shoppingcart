@@ -1,66 +1,78 @@
 <?php
-$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+include 'config.php'; // ตรวจสอบให้แน่ใจว่าเส้นทางถูกต้อง
+
+// รับ order_id จาก URL
+$orderId = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+
+if ($orderId > 0) {
+    // ดึงข้อมูลคำสั่งซื้อจากฐานข้อมูล
+    $sql = "SELECT orders.*, CONCAT(users.first_name, ' ', users.last_name) AS username 
+            FROM orders 
+            JOIN users ON orders.user_id = users.user_id 
+            WHERE orders.order_id = $orderId";
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+
+    $order = mysqli_fetch_assoc($result);
+
+    if (!$order) {
+        die("Order not found.");
+    }
+
+    // ดึงข้อมูลสินค้าที่ผู้ใช้ซื้อ
+    $productSql = "SELECT products.product_name, products.profile_image, order_items.quantity 
+                   FROM order_items 
+                   JOIN products ON order_items.product_id = products.id 
+                   WHERE order_items.order_id = $orderId";
+    $productResult = mysqli_query($conn, $productSql);
+
+    if (!$productResult) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+
+    $products = mysqli_fetch_all($productResult, MYSQLI_ASSOC);
+
+} else {
+    die("Invalid order ID.");
+}
+
+mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ชำระเงินสำเร็จ</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .container h1 {
-            color: #4caf50;
-            margin-bottom: 20px;
-        }
-
-        .container p {
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            background-color: #96642a;
-            color: #fff;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background-color: #e64a19;
-        }
-    </style>
+    <title>การชำระเงินสำเร็จ</title>
+    <link rel="stylesheet" href="assets/css/payment_success.css">
 </head>
 <body>
-    <div class="container">
+    <div class="success-container">
         <h1>การชำระเงินสำเร็จ!</h1>
-        <p>ขอบคุณสำหรับการสั่งซื้อของคุณ</p>
-        <a href="index.php" class="btn">กลับไปที่หน้ารายละเอียดสินค้า</a>
+        <p>ขอบคุณที่สั่งซื้อสินค้ากับเรา การชำระเงินของคุณสำเร็จเรียบร้อยแล้ว</p>
+
+        <div class="receipt">
+            <h4>ใบเสร็จการสั่งซื้อ</h4>
+            <p><strong>เลขอ้างอิงคำสั่งซื้อ:</strong> <?php echo htmlspecialchars($order['order_id']); ?></p>
+            <p><strong>ผู้ใช้:</strong> <?php echo htmlspecialchars($order['username']); ?></p>
+            <p><strong>วันที่สั่งซื้อ:</strong> <?php echo htmlspecialchars($order['order_date']); ?></p>
+            <p><strong>ยอดรวม:</strong> <?php echo htmlspecialchars($order['total_amount']); ?> บาท</p>
+            <p><strong>สถานะการชำระเงิน:</strong> ชำระแล้ว</p>
+
+            <p><strong>สินค้าที่ซื้อ:</strong></p>
+            <?php foreach ($products as $product): ?>
+                <div class="product-details">
+                    <img src="upload_image/<?php echo htmlspecialchars($product['profile_image']); ?>" alt="Product Image">
+                    <p><?php echo htmlspecialchars($product['product_name']); ?> - จำนวน: <?php echo htmlspecialchars($product['quantity']); ?> ชิ้น</p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <a href="index.php">กลับไปหน้าหลัก</a>
     </div>
 </body>
 </html>

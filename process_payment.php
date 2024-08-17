@@ -7,9 +7,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// รับข้อมูล order_id และวิธีการชำระเงินจากฟอร์ม
+// รับข้อมูล order_id จากฟอร์ม
 $orderId = isset($_POST['order_id']) ? intval($_POST['order_id']) : 0;
-$paymentMethod = isset($_POST['payment_method']) ? $_POST['payment_method'] : '';
 
 if ($orderId > 0) {
     // ดึงข้อมูลคำสั่งซื้อจากฐานข้อมูล
@@ -31,7 +30,19 @@ if ($orderId > 0) {
         die("Order not found.");
     }
 } else {
-    die("Invalid order ID or payment method.");
+    die("Invalid order ID.");
+}
+
+// หากยืนยันการจ่ายเงินเสร็จสิ้น ให้บันทึกสถานะการจ่ายเงิน
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
+    $updateSql = "UPDATE orders SET status = 'paid' WHERE order_id = $orderId";
+    if (mysqli_query($conn, $updateSql)) {
+        // นำผู้ใช้ไปยังหน้า payment_success.php พร้อมส่ง order_id ไปด้วย
+        header('Location: payment_success.php?order_id=' . $orderId);
+        exit();
+    } else {
+        die("Failed to update payment status: " . mysqli_error($conn));
+    }
 }
 
 mysqli_close($conn);
@@ -239,7 +250,10 @@ body {
         </div>
 
         <div class="mt-4 text-center">
-            <a href="index.php" class="btn btn-primary btn-lg">กลับไปหน้าหลัก</a>
+            <form method="POST" action="process_payment.php">
+                <input type="hidden" name="order_id" value="<?php echo $orderId; ?>">
+                <button type="submit" name="confirm_payment" class="btn btn-primary btn-lg">ยืนยันการชำระเงิน</button>
+            </form>
         </div>
     </div>
 

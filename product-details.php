@@ -37,7 +37,6 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายละเอียดสินค้า</title>
     <link rel="stylesheet" href="assets/css/product-details.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
         .custom-product-stock {
             font-size: 1.2em;
@@ -57,6 +56,12 @@ mysqli_close($conn);
             width: 60px;
             padding: 5px;
             margin-left: 10px;
+            text-align: center;
+        }
+
+        .quantity-wrapper button {
+            padding: 5px 10px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -117,6 +122,7 @@ mysqli_close($conn);
                 var quantity = document.getElementById('quantity');
                 if (quantity.value > 1) {
                     quantity.value--;
+                    document.getElementById('form-quantity').value = quantity.value; // อัปเดตค่าในฟอร์ม
                 }
             });
 
@@ -124,9 +130,11 @@ mysqli_close($conn);
                 var quantity = document.getElementById('quantity');
                 if (quantity.value < <?php echo $product['stock_quantity']; ?>) {
                     quantity.value++;
+                    document.getElementById('form-quantity').value = quantity.value; // อัปเดตค่าในฟอร์ม
                 }
             });
         </script>
     <?php endif; ?>
 </body>
 </html>
+
