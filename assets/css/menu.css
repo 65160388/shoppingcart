@@ -84,7 +84,7 @@ body {
     border-radius: 0 50px 50px 0;
     padding: 10px 20px;
     border: none;
-    background-color: #ff5722;
+    background-color: #ff2600;
     color: #fff;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -177,7 +177,7 @@ a {
 
 a:hover {
     text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
-    color: inherit; /* รักษาสีเดิม */
+    color: #ff5722; /* ให้ใช้สีของข้อความตามปกติ */
 }
 
 /* Adjust dropdown menu size */

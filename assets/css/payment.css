@@ -9,10 +9,16 @@ body {
 
 /* หัวเว็บเพจ */
 .custom-header {
-  background-color: #d4b196;
-  padding: 10px;
+  background-color: #ff5722;
+  padding: 15px 1%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* position: fixed; */
+  top: 0;
+  z-index: 1000;
 }
 
 .logo-container {
@@ -23,18 +29,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-left: 25px; /* เพิ่มระยะห่างจากขอบซ้าย */
 }
 
 .logo-container img {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
+.header-title {
+  flex-grow: 1;
+  margin-left: 30px; /* เพิ่ม margin-left เพื่อขยับข้อความไปทางขวา */
+  margin-right: 50px; /* เพิ่ม margin-right เพื่อสร้างสมดุล */
+}
+
 .header-title span {
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.7rem;
+  color: #ffffff;
 }
 
 /* สไตล์ของการ์ด */
@@ -49,7 +61,7 @@ body {
 
 /* ส่วนหัวของการ์ด */
 .card-header {
-  background-color: #007bff;
+  background-color: #FF5722;
   color: #fff;
   font-weight: 600;
   font-size: 1.2rem;
@@ -82,7 +94,7 @@ body {
 .font-weight-bold {
   font-weight: 700;
   font-size: 1.4rem;
-  color: #007bff;
+  color: #FF5722;
 }
 
 /* ปุ่มสั่งซื้อ */
@@ -159,7 +171,7 @@ body {
 }
 
 .form-control:focus {
-  border-color: #007bff;
+  border-color: #FF5722;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
 }
 

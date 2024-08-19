@@ -1,0 +1,131 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ปรับแต่งคอนเทนเนอร์ให้มีการจัดระยะห่าง */
+.container {
+    padding-top: 100px; /* เพิ่ม padding-top เพื่อดันฟอร์มลงมาให้ไม่ติดกับ header */
+    padding: 15px;
+    max-width: 800px;
+}
+
+/* สไตล์ของการ์ด */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* ส่วนหัวของ Card */
+.card-header {
+    background-color: #FF5722;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.5rem;
+}
+
+/* ปรับแต่งส่วนเนื้อหาของ Card */
+.card-body {
+    padding: 25px;
+}
+
+/* ปรับแต่งฟอร์ม */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #FF5722;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #343a40;
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea.form-control {
+    resize: none;
+    height: auto;
+    min-height: 120px;
+}
+
+/* ปุ่ม */
+button.btn-primary {
+    background-color: #FF5722;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+button.btn-primary:hover {
+    background-color: #c82333;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* หัวเว็บเพจ */
+.custom-header {
+    background-color: #FF5722;
+    padding: 15px 1%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    /* position: fixed; */
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px; 
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.header-title {
+    flex-grow: 1;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.header-title span {
+    font-size: 1.7rem;
+    color: #ffffff;
+}
+

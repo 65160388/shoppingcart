@@ -91,7 +91,7 @@ body {
 
 /* ส่วนหัวของการ์ด */
 .card-header {
-    background-color: #007bff;
+    background-color: #FF5722;
     color: #fff;
     font-weight: 600;
     font-size: 1.2rem;
@@ -137,7 +137,7 @@ body {
 /* เน้นราคาสินค้า */
 .product-info .price {
     font-weight: bold;
-    color: #007bff;
+    color: #FF5722;
     font-size: 16px;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .payment-info strong {
-    color: #007bff;
+    color: #FF5722;
 }
 
 /* สไตล์ของรูป QR Code */
@@ -162,9 +162,9 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ปุ่มกลับไปหน้าหลัก */
+/* ปุ่มไปหน้าถัดไป */
 .btn-primary {
-    background-color: #007bff;
+    background-color: #FF5722;
     border: none;
     padding: 12px 25px;
     font-size: 1.1rem;
@@ -175,7 +175,7 @@ body {
 
 /* เปลี่ยนสีปุ่มเมื่อ hover */
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #E64A19;
 }
 
 /* จัดการกับระยะห่างในส่วนต่างๆ */
@@ -188,7 +188,7 @@ body {
     text-align: center !important;
 }
 
-/* Media Query สำหรับหน้าจอขนาดเล็ก */
+/* Media Query สำหรับหน้าจอขนาดเล็ก
 @media (max-width: 768px) {
     .card-body {
         padding: 15px;
@@ -206,7 +206,7 @@ body {
         margin-right: 0;
         margin-bottom: 15px;
     }
-}
+} */
 
 </style>
 </head>

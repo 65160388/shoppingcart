@@ -78,7 +78,7 @@ body {
 
 .success-container a {
     text-decoration: none;
-    background-color: #007bff;
+    background-color: #FF5722;
     color: white;
     padding: 12px 25px;
     border-radius: 8px;
@@ -88,7 +88,7 @@ body {
 }
 
 .success-container a:hover {
-    background-color: #0056b3;
+    background-color: #E64A19;
 }
 
 @media (max-width: 768px) {
