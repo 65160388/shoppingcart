@@ -107,7 +107,7 @@ mysqli_close($conn);
         .login-container input[type="submit"] {
             width: 100%;
             padding: 12px;
-            background-color: #007bff;
+            background-color: #FF5722;
             border: none;
             border-radius: 5px;
             color: white;
@@ -117,7 +117,7 @@ mysqli_close($conn);
         }
 
         .login-container input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #E64A19;
         }
 
         .login-container p {
@@ -127,13 +127,13 @@ mysqli_close($conn);
         }
 
         .login-container p a {
-            color: #007bff;
+            color: #FF5722;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .login-container p a:hover {
-            color: #0056b3;
+            color: #E64A19;
         }
     </style>
 </head>
