@@ -45,15 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             min-height: 100vh;
         }
 
+        /* หัวเว็บเพจ */
         .custom-header {
-            background-color: #d4b196;
-            padding: 15px 5%;
+            background-color: #ff5722;
+            padding: 15px 1%;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             width: 100%;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
+            /* position: fixed; */
             top: 0;
             z-index: 1000;
         }
@@ -83,8 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         .header-title span {
             font-size: 1.7rem;
-            color: #333;
-            font-weight: bold;
+            color: #ffffff;
         }
 
         .container {
