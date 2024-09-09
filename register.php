@@ -52,108 +52,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>สมัครสมาชิก</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .register-container {
-            background-color: #ffffff;
-            padding: 30px 40px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-            border-radius: 10px;
-            width: 400px;
-            text-align: center;
-            position: relative;
-        }
-
-        .register-container h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #333;
-        }
-
-        .error-message {
-            color: #d9534f;
-            background-color: #f2dede;
-            border: 1px solid #ebccd1;
-            padding: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            display: <?php echo $error_message ? 'block' : 'none'; ?>;
-        }
-
-        .register-container label {
-            font-size: 16px;
-            color: #555;
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-        }
-
-        .register-container input[type="text"],
-        .register-container input[type="email"],
-        .register-container input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        .register-container input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #FF5722;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .register-container input[type="submit"]:hover {
-            background-color: #E64A19;
-        }
-
-        .register-container p {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #777;
-        }
-
-        .register-container p a {
-            color: #FF5722;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .register-container p a:hover {
-            color: #E64A19;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/register.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="register-container">
         <h2>สมัครสมาชิก</h2>
-        <?php if ($error_message): ?>
-            <div class="error-message"><?php echo $error_message; ?></div>
-        <?php endif; ?>
+        <div class="error-message" style="display: none;"><?php echo htmlspecialchars($error_message); ?></div>
         <form action="register.php" method="post">
             <label for="first_name">ชื่อจริง:</label>
             <input type="text" id="first_name" name="first_name" value="<?php echo isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : ''; ?>" required>
@@ -168,7 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" id="phone" name="phone" value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
 
             <label for="password">รหัสผ่าน:</label>
-            <input type="password" id="password" name="password" required>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required>
+                <i class="fas fa-eye toggle-password" style="display: none;"></i> <!-- ไอคอนแสดง/ซ่อนรหัสผ่าน -->
+            </div>
 
             <label for="confirm_password">ยืนยันรหัสผ่าน:</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
@@ -177,5 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         <p>มีบัญชีอยู่แล้ว? <a href="login.php">เข้าสู่ระบบที่นี่</a></p>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/register.js"></script>
+    <script> var errorMessage = "<?php echo addslashes($error_message); ?>"; </script>
+
 </body>
 </html>

@@ -55,8 +55,8 @@
     color: #000; /* เปลี่ยนสีเป็นสีดำ */
 }
 
-.product-price {
-    color: #007bff;
+.product-price { /* ไปเปลี่ยนสีราคาใน menu.css */
+    color: #ff5722;
     font-weight: bold;
 }
 

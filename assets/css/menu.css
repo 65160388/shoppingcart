@@ -172,27 +172,37 @@ body {
 /* เอาเส้นใต้ลิงก์ออก */ 
 a {
     text-decoration: none;
-    color: #ff5722; /* ให้ใช้สีของข้อความตามปกติ */
+    color: #ff5722; /* ให้ใช้สีของข้อความ */
 }
 
 a:hover {
     text-decoration: none; /* เอาเส้นใต้ลิงก์ออกเมื่อวางเมาส์ */
-    color: #ff5722; /* ให้ใช้สีของข้อความตามปกติ */
+    color: #ff5722; /* ให้ใช้สีของข้อความ */
 }
 
 /* Adjust dropdown menu size */
 .dropdown-menu {
     min-width: 120px; /* ลดขนาดความกว้างของเมนู */
-    padding: 5px; /* ปรับ padding เพื่อความสวยงาม */
-    font-size: 14px; /* ปรับขนาดตัวอักษร */
+    padding: 5px;
+    font-size: 14px;
+    background-color: #ffffff;
+    border: 1px solid #ddd; 
 }
 
 .dropdown-item {
     padding: 5px 10px; /* ปรับ padding ของแต่ละ item */
+    color: #333;
 }
 
+.dropdown-item:hover {
+    background-color: #ff5722; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    color: #fff;
+}
+
+/* ปรับตำแหน่งเมนูดรอปดาวน์ */
 .navbar-nav .dropdown-menu {
     right: 0; /* บังคับให้ดรอปดาวน์ชิดขอบขวาของปุ่ม */
     left: auto; /* ปิดการตั้งค่าขอบซ้ายอัตโนมัติ */
     transform: translateX(-5%); /* ปรับขนาดตามความต้องการ */
 }
+

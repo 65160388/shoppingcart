@@ -39,7 +39,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 20px;
-            background-color: #007bff;
+            background-color: #FF5722;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -48,7 +48,7 @@
         }
 
         .welcome-container a:hover {
-            background-color: #0056b3;
+            background-color: #E64A19;
         }
     </style>
 </head>

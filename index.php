@@ -10,7 +10,7 @@ if (!$conn) {
 // รับคำค้นหาจากฟอร์ม
 $searchQuery = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
 
-// สร้างคำสั่ง SQL สำหรับค้นหา
+// สร้างคำสั่ง SQL สำหรับค้นหาเพื่อดึงข้อมูลจากตาราง products
 $sql = "SELECT * FROM products";
 if ($searchQuery) {
     $sql .= " WHERE product_name LIKE '%$searchQuery%'";
@@ -30,10 +30,9 @@ if (!$hand) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="icon" href="img/cpx.png" type="image/x-icon"> <!--รูปบน Tab browser-->
+    <link rel="icon" href="https://i.pinimg.com/236x/08/1d/a0/081da03b1d9ee7c8eb31b7470b84faff.jpg" type="image/x-icon"> <!--รูปบน Tab browser-->
 
-    <title>Document</title>
-    <!-- <link href="<?php echo $base_url; ?>/assets/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>หนัาหลัก</title>
     <link href="<?php echo $base_url; ?>/assets/fontawesome/css/fontawesome.min.css" rel="stylesheet">
     <link href="<?php echo $base_url; ?>/assets/fontawesome/css/fontbrands.min.css" rel="stylesheet">
     <link href="<?php echo $base_url; ?>/assets/fontawesome/css/solid.min.css" rel="stylesheet">
